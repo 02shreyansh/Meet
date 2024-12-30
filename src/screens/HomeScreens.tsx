@@ -9,20 +9,44 @@ import { useUserStore } from '../service/userStore'
 import { useWS } from '../api/WSProvider'
 import { useLiveMeetStore } from '../service/meetStore'
 import { Colors } from '../utils/Constants'
-import { addHyphens } from '../utils/Helpers'
-
+import { addHyphens, removeHyphens } from '../utils/Helpers'
+import { checkSession } from "../api/Session"
 
 const HomeScreens = () => {
   const { emit } = useWS();
-  const { user, sessions, addSession, removeSession } = useUserStore();
-  // const {addSessionId,removeSessionId} =useLiveMeetStore();
+  const { user, sessions, addSession, removeSession } = useUserStore() as any;
+  const {addSessionId,removeSessionId} =useLiveMeetStore();
   const handleNavigation = () => {
     const storedName = user?.name;
     if (!storedName) {
       Alert.alert('Please enter your name to join the meeting');
       return;
     }
-    navigate('joinMeetScreen')
+    navigate('JoinMeetScreen')
+
+  }
+  const joinViaSessionId = async (id: string) => {
+    const storedName = user?.name;
+    if (!storedName) {
+      Alert.alert('Please enter your name to join the meeting');
+      return;
+    }
+    const isAvailable = await checkSession(id);
+    if (isAvailable) {
+      emit('prepare-session', {
+        userId: user?.id,
+        sessionId: removeHyphens(id),
+      });
+      addSession(id);
+      addSessionId(id);
+      navigate('PrepareScreen');
+
+
+    } else {
+      removeSession(id);
+      removeSessionId(id);
+      Alert.alert('Session is not available');
+    }
 
   }
   const renderSessions = ({ item }: { item: string }) => {
@@ -33,7 +57,12 @@ const HomeScreens = () => {
           <Text style={homeStyles.sessionTitle}>
             {addHyphens(item)}
           </Text>
+          <Text style={homeStyles.sessionTime}>Join Now</Text>
         </View>
+        <TouchableOpacity style={homeStyles.joinButton}
+          onPress={() => joinViaSessionId(item)}>
+          <Text style={homeStyles.joinButtonText}>Join</Text>
+        </TouchableOpacity>
       </View>
     )
   }

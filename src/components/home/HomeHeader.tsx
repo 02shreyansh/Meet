@@ -10,7 +10,7 @@ import { navigate } from '../../utils/NavigationUtils';
 
 const HomeHeader = () => {
     const [visible, setVisible] = useState(false);
-    const { user } = useUserStore();
+    const { user } = useUserStore() as any;
     useEffect(() => {
         const checkUserName = () => {
             const storedName = user?.name;
@@ -26,7 +26,7 @@ const HomeHeader = () => {
             setVisible(true);
             return;
         }
-        navigate('joinMeetScreen')
+        navigate('JoinMeetScreen')
 
     }
     return (
