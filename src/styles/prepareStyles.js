@@ -126,4 +126,26 @@ export const prepareStyles = StyleSheet.create({
     width: '80%',
     textAlign: 'left',
   },
+  linkHeader: {
+    fontSize: RFValue(14),
+    fontWeight: 'bold',
+    color: Colors.text,
+    marginTop: 10,
+    textDecorationLine: 'underline', 
+  },
+  linkText: {
+    fontSize: RFValue(12),
+    color: Colors.link, 
+    textDecorationLine: 'underline', 
+    marginVertical: 5, 
+  },
+  encryptionText: {
+    fontSize: RFValue(14),
+    color: Colors.encryption, 
+    marginVertical: 5, 
+  },
+  noteText:{
+    fontSize: RFValue(12),
+    color: Colors.text,
+  }
 });

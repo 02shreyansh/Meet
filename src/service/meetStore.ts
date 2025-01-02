@@ -8,12 +8,13 @@ interface LiveMeetState {
     chatMessages: string[];
     micOn: boolean;
     videoOn: boolean;
-    addSessionId: (id: string) => void;
+    addSessionId: (id: string|null) => void;
     removeSessionId: (id:string) => void;
     addParticipant: (participant: { userId: string }) => void;
     removeParticipant: (userId: string) => void;
     updateParticipant: (participant: { userId: string, micOn: boolean, videoOn: boolean }) => void;
     setStreamUrl:(participantId:string,streamUrl:string)=>void;
+    toggle:(type:string)=>void;
     
 }
 
@@ -25,7 +26,7 @@ export const useLiveMeetStore = create<LiveMeetState, [["zustand/persist", unkno
             chatMessages: [],
             micOn: false,
             videoOn: false,
-            addSessionId: (id: string) => {
+            addSessionId: (id: string|null) => {
                 set({ sessionId: id });
             },
             removeSessionId: (id:string) => {

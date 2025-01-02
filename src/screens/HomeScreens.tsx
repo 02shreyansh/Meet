@@ -39,7 +39,7 @@ const HomeScreens = () => {
       });
       addSession(id);
       addSessionId(id);
-      navigate('PrepareScreen');
+      navigate('PrepareMeetScreen');
 
 
     } else {

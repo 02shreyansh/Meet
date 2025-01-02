@@ -58,8 +58,8 @@ const logPermissionStatus = (permission: string, status: string): void => {
   // }
 };
 
-export const addHyphens = (str: string): string => {
-  return str?.replace(/(.{3})(?=.)/g, '$1-');
+export const addHyphens = (str: string | null): string => {
+  return (str ?? '').replace(/(.{3})(?=.)/g, '$1-');
 };
 
 export const removeHyphens = (str:string) => {
