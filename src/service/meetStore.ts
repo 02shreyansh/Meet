@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { mmkvStorage } from './Storage';
+import { MediaStream } from "react-native-webrtc";
 
 interface LiveMeetState {
     sessionId: string | null;
@@ -13,8 +14,9 @@ interface LiveMeetState {
     addParticipant: (participant: { userId: string }) => void;
     removeParticipant: (userId: string) => void;
     updateParticipant: (participant: { userId: string, micOn: boolean, videoOn: boolean }) => void;
-    setStreamUrl:(participantId:string,streamUrl:string)=>void;
+    setStreamUrl:(participantId:string,streamUrl:string | MediaStream)=>void;
     toggle:(type:string)=>void;
+    clear: () => void;
     
 }
 
@@ -56,7 +58,7 @@ export const useLiveMeetStore = create<LiveMeetState, [["zustand/persist", unkno
                     ),
                 });
             },
-            setStreamUrl:(participantId:string,streamUrl:string)=>{
+            setStreamUrl:(participantId:string,streamUrl:string|MediaStream)=>{
                 const { participants } = get();
                 const updatedparticipants=participants.map(p=>{
                     if(p.userId===participantId){
@@ -73,6 +75,7 @@ export const useLiveMeetStore = create<LiveMeetState, [["zustand/persist", unkno
                     set((state)=>({videoOn:!state.videoOn}));
                 }
             },
+            clear: () => set({ sessionId: null, participants: []}),
         }),
         {
             name: "live-meet-storage",
