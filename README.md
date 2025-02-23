@@ -48,20 +48,7 @@ Ensure you have the following installed:
    npx react-native run-android
    ```
 
-### 🖥 Backend Setup
-If you're running the backend locally:
-1. **Navigate to the backend directory:**
-   ```sh
-   cd backend
-   ```
-2. **Install dependencies:**
-   ```sh
-   npm install
-   ```
-3. **Start the server:**
-   ```sh
-   node server.js
-   ```
+
 
 ## 🤝 Contribution
 Contributions are welcome! Feel free to submit issues and pull requests.
@@ -70,7 +57,9 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 This project is licensed under the **MIT License**.
 
 ---
+## 👤 Developer
+This project was independently developed by **Shreyansh**. It showcases expertise in building real-time video communication applications with **WebRTC** and **Socket.io**, ensuring high-quality and secure interactions for users.  
+---
 ### 📞 Contact
 For inquiries, feel free to reach out:
-📧 Email: [your-email@example.com](mailto:your-email@example.com)
-📌 GitHub: [your-github-profile](https://github.com/your-username)
+📧 Email: [02.shreyansh.10@gmail.com](mailto:02.shreyansh.10@gmail.com)
