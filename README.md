@@ -58,7 +58,9 @@ This project is licensed under the **MIT License**.
 
 
 ## 👤 Developer
+
 This project was independently developed by **Shreyansh**. It showcases expertise in building real-time video communication applications with **WebRTC** and **Socket.io**, ensuring high-quality and secure interactions for users.  
+
 ---
 ### 📞 Contact
 For inquiries, feel free to reach out:
